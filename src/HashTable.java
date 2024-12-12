@@ -39,6 +39,25 @@ public class HashTable {
 
         return 0;
     }
+    public boolean remove(String key) {
+        int index = getBucketIndex(key);
+        MyMapNode head = buckets[index];
+        MyMapNode previous = null;
+
+        while (head != null) {
+            if (head.key.equals(key)) {
+                if (previous == null) {
+                    buckets[index] = head.next;
+                } else {
+                    previous.next = head.next;
+                }
+                return true;
+            }
+            previous = head;
+            head = head.next;
+        }
+        return false;
+    }
 
     public void printHashTable() {
         for (int i = 0; i < capacity; i++) {
