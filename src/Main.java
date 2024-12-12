@@ -9,8 +9,6 @@ public class Main {
             word = word.toLowerCase();
             hashTable.put(word, 1);
         }
-
-
         System.out.println("Word Frequencies:");
         hashTable.printHashTable();
     }
