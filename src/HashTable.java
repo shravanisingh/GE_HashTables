@@ -1,4 +1,4 @@
-class HashTable {
+public class HashTable {
     private MyMapNode[] buckets;
     private int capacity;
 
@@ -11,19 +11,17 @@ class HashTable {
         return Math.abs(key.hashCode() % capacity);
     }
 
-    public void put(String key, int value) {
+    public void put(String key) {
         int index = getBucketIndex(key);
         MyMapNode head = buckets[index];
-        while (head != null){
+        while (head != null) {
             if (head.key.equals(key)) {
-                head.value += value;
+                head.value++;
                 return;
             }
             head = head.next;
         }
-
-
-        MyMapNode newNode = new MyMapNode(key, value);
+        MyMapNode newNode = new MyMapNode(key, 1);
         newNode.next = buckets[index];
         buckets[index] = newNode;
     }
@@ -32,7 +30,7 @@ class HashTable {
         int index = getBucketIndex(key);
         MyMapNode head = buckets[index];
 
-        while (head != null){
+        while (head != null) {
             if (head.key.equals(key)) {
                 return head.value;
             }
